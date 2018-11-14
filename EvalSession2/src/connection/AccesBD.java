@@ -19,8 +19,6 @@ public class AccesBD {
 	private static String urlSuite = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	
 	private static Connection connexion = null;
-	private Statement statement = null;
-	private ResultSet resultat = null;
 	
 	
 	
@@ -53,7 +51,7 @@ public class AccesBD {
 		}catch (Exception e)
 			{
 				System.out.println(e);
-				JOptionPane.showMessageDialog(null,e.getMessage(),"Connexion � MySQL",JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null,e.getMessage(),"Connexion a MySQL",JOptionPane.WARNING_MESSAGE);
 			}
 
 		return connexion;

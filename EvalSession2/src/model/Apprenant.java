@@ -87,6 +87,8 @@ public class Apprenant {
 				+ email + ", photo=" + photo + ", region=" + region;
 	}
 
-	
+	public String afficherNomPrenom() {
+		return "Apprenant "+ id + ", nom=" + nom + ", prenom=" + prenom;
+	}
 	
 }
