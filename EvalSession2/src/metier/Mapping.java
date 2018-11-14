@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import model.Activite;
 import model.Apprenant;
+import model.Apprenant_activite;
 
 
 public class Mapping {
@@ -37,6 +38,19 @@ public class Mapping {
 		activite.setActivite(resultat.getString("ACTIVITE"));
 		
 		return activite;
+	
+	}
+	
+	/**
+	 * Méthode pour instancier un objet Apprenant_activite
+	 */
+	public static Apprenant_activite mapperApprenant_activite(ResultSet resultat) throws SQLException, ClassNotFoundException {
+		
+		Apprenant_activite app_act = new Apprenant_activite();
+		app_act.setIdApprenant(resultat.getInt("ID_APPRENANT"));
+		app_act.setIdActivite(resultat.getInt("ID_ACTIVITE"));
+		
+		return app_act;
 	
 	}
 }
