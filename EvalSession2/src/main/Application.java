@@ -17,13 +17,21 @@ public class Application {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		String nom = "Tressous";
+		String nom = "Zébutruc";
 		Apprenant apprenant1 = Requetes.getApprenantByName(nom);
 		ArrayList<Activite> listActivite = Requetes.getActivitesByApprenant(apprenant1);
-		System.out.println(apprenant1.getPrenom() + " a comme activité(s) : \n");
-		for (Activite activite : listActivite) {
-			System.out.println(activite.getActivite());
+		
+		if (listActivite.isEmpty()) {
+			System.out.println(apprenant1.getPrenom() + " n'a pas d'activité enregistré...");
 		}
+		else {
+			System.out.println(apprenant1.getPrenom() + " a comme activité(s) : \n");
+			
+			for (Activite activite : listActivite) {
+				System.out.println(activite.getActivite());	
+			}
+		}
+		
 		
 //		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants("ID_REGION");
 //		
