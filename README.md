@@ -5,4 +5,4 @@ Longueville Thomas & Tressous Cédric
 
 # MCD 
 
-![MCD](MCDevalSession2.jpg)
+![MCD](MCDevalSession2.JPG)
