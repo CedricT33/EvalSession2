@@ -16,10 +16,16 @@ public class Application {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants();
+		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants("ID_REGION");
 		
 		for (Apprenant apprenant : apprenants) {
-			System.out.println(apprenant.afficherNomPrenom());
+			System.out.println(apprenant.afficherNomPrenomRegion());
 		}
+		
+//		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants("ID_APPRENANT");
+//		
+//		for (Apprenant apprenant : apprenants) {
+//			System.out.println(apprenant.afficherNomPrenom());
+//		}
 	}
 }

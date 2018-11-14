@@ -83,12 +83,16 @@ public class Apprenant {
 
 	@Override
 	public String toString() {
-		return "Apprenant id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", birthdate=" + birthdate + ", email="
-				+ email + ", photo=" + photo + ", region=" + region;
+		return "Apprenant id=" + id + ",\t\tnom=" + nom + ",\t\tprenom=" + prenom + ",\t\tbirthdate=" + birthdate + ",\t\temail="
+				+ email + ",\t\tphoto=" + photo + ",\t\t\tregion=" + region;
 	}
 
 	public String afficherNomPrenom() {
-		return "Apprenant "+ id + ", nom=" + nom + ", prenom=" + prenom;
+		return "Apprenant "+ id + ",\t\tnom=" + nom + ",\t\tprenom=" + prenom;
+	}
+	
+	public String afficherNomPrenomRegion() {
+		return region.getNomRegion() + "\t:\t" + nom + " " + prenom;
 	}
 	
 }

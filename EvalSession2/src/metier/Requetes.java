@@ -15,12 +15,12 @@ public class Requetes {
 	/**
 	 * Méthode pour retourner tous les apprenants dans un tableau
 	 */
-	public static ArrayList<Apprenant> getAllApprenants() throws ClassNotFoundException, SQLException {
+	public static ArrayList<Apprenant> getAllApprenants(String orderBy) throws ClassNotFoundException, SQLException {
 		
 		Statement statement = null;
 		
 		ArrayList<Apprenant>  apprenants = new ArrayList<Apprenant>();
-		String requete	= "SELECT * FROM apprenants ORDER BY ID_APPRENANT";
+		String requete	= "SELECT * FROM apprenants ORDER BY "+ orderBy;
 		statement = AccesBD.getConnection().createStatement();
 		ResultSet resultat = statement.executeQuery(requete);
 		while(resultat.next())
@@ -29,6 +29,45 @@ public class Requetes {
 			apprenants.add(a);
 		}
 		return apprenants;
+	}
+	
+	/**
+	 * Méthode pour retourner un apprenant par son nom
+	 */
+	public static Apprenant getApprenantByName(String nom) throws ClassNotFoundException, SQLException {
+		
+		Statement statement = null;
+		Apprenant apprenant = new Apprenant();
+		String requete	= "SELECT * FROM apprenants WHERE NOM = " + nom;
+		statement = AccesBD.getConnection().createStatement();
+		ResultSet resultat = statement.executeQuery(requete);
+		while(resultat.next())
+		{
+			apprenant = Mapping.mapperApprenant(resultat);
+		}
+
+		return apprenant;
+	}
+	
+	/**
+	 * Méthode pour retourner les activités de l'apprenant
+	 */
+	public static ArrayList<Activite> getActiviteByApprenant(Apprenant apprenant) throws ClassNotFoundException, SQLException {
+		
+		int id_apprenant = apprenant.getId();
+		
+		Statement statement = null;
+		ArrayList<Activite> activites = new ArrayList<>();
+		String requete	= "SELECT * FROM apprenant_activite WHERE ID_APPRENANT = " + id_apprenant;
+//		statement = AccesBD.getConnection().createStatement();
+//		ResultSet resultat = statement.executeQuery(requete);
+//		while(resultat.next())
+//		{
+//			apprenant = Mapping.mapperApprenant(resultat);
+//		}
+//		int id_apprenant = apprenant.getId();
+		
+		return activites;
 	}
 	
 	/**
