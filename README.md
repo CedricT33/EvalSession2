@@ -1,5 +1,5 @@
 # EvalSession2
-Évaluation fin de session 2 Simplon.
+Évaluation fin de session 2 Simplon.<br/>;
 Création d'une base de données et d'une application qui propose un menu afin de faire des requetes sur les tables de cette base de données.
 
 Longueville Thomas & Tressous Cédric
@@ -15,6 +15,8 @@ Longueville Thomas & Tressous Cédric
 # Diagramme de classes
 
 ![ClassDiagram](ClassDiagram.JPG)
+
+# Exemple de code
 
 <pre><code>
   /**
