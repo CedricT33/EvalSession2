@@ -1,6 +1,6 @@
 # EvalSession2
-Évaluation fin de session 2 Simplon.<br/>;
-Création d'une base de données et d'une application qui propose un menu afin de faire des requetes sur les tables de cette base de données.
+Évaluation fin de session 2 Simplon.<br/>
+Création d'une base de données et d'une application qui propose un menu afin de faire des requêtes sur les tables de cette base de données.
 
 Longueville Thomas & Tressous Cédric
 
