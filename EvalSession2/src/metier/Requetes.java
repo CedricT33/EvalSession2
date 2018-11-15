@@ -49,6 +49,40 @@ public class Requetes {
 	}
 	
 	/**
+	 * Méthode pour ajouter une activité à un apprenant
+	 */
+	public static void ajouterActiviteApprenant(Apprenant apprenant, Activite activite) throws SQLException
+	{
+		int id_apprenant = apprenant.getId();
+		int id_activite = activite.getId();
+		
+		PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenant_activite VALUES( ? , ? )");
+		prepareStatement.setInt(1,id_activite);
+		prepareStatement.setInt(2,id_apprenant);
+		prepareStatement.executeUpdate();
+		
+	}
+	
+	/**
+	 * Méthode pour retourner une liste d'activites non pratiqués par les apprenants.
+	 */
+	public static ArrayList<Activite> ActivitesNonPratiques() throws SQLException, ClassNotFoundException {
+		
+		Statement statement = null;
+		String requete	= "select * from activites left join apprenant_activite on activites.ID_ACTIVITE = apprenant_activite.ID_ACTIVITE where apprenant_activite.ID_ACTIVITE IS NULL";
+		statement = AccesBD.getConnection().createStatement();
+		ResultSet resultat = statement.executeQuery(requete);
+		ArrayList<Activite> listActiviteNonPratiques = new ArrayList<>();
+		while(resultat.next())
+		{
+			Activite activite = Mapping.mapperActivite(resultat);
+			listActiviteNonPratiques.add(activite);
+		}
+		
+		return listActiviteNonPratiques;
+	}
+	
+	/**
 	 * Méthode pour retourner tous les apprenants rangés par @param dans un tableau
 	 */
 	public static ArrayList<Apprenant> getAllApprenants(String orderBy) throws ClassNotFoundException, SQLException {
