@@ -17,17 +17,21 @@ public class Requetes {
 	/**
 	 * Méthode ajouter un nouvel apprenant
 	 */
-	public static void ajouterApprenant(Apprenant apprenant) throws SQLException
-	{
-		PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenants (NOM, PRENOM, BIRTHDATE, EMAIL, PHOTO, ID_REGION) VALUES( ? , ? , ? , ?, ?, ?)");
-		prepareStatement.setString(1,apprenant.getNom());
-		prepareStatement.setString(2,apprenant.getPrenom());
-		prepareStatement.setDate(3,apprenant.getBirthdate());
-		prepareStatement.setString(4,apprenant.getEmail());
-		prepareStatement.setString(5,apprenant.getPhoto());
-		prepareStatement.setInt(6,apprenant.getRegion().getId());
-		prepareStatement.executeUpdate();
-		
+	public static void ajouterApprenant(Apprenant apprenant) {
+		try {
+			PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenants (NOM, PRENOM, BIRTHDATE, EMAIL, PHOTO, ID_REGION) VALUES( ? , ? , ? , ?, ?, ?)");
+			prepareStatement.setString(1,apprenant.getNom());
+			prepareStatement.setString(2,apprenant.getPrenom());
+			prepareStatement.setDate(3,apprenant.getBirthdate());
+			prepareStatement.setString(4,apprenant.getEmail());
+			prepareStatement.setString(5,apprenant.getPhoto());
+			prepareStatement.setInt(6,apprenant.getRegion().getId());
+			prepareStatement.executeUpdate();
+			System.out.println("L'apprenant a bien été ajouté !");
+		}
+		catch(SQLException e) {
+			System.out.println("Erreur lors de l'ajout de l'apprenant !");
+		}
 	}
 	
 	/**
@@ -39,11 +43,14 @@ public class Requetes {
 
 		try {
 			statement = AccesBD.getConnection().createStatement();
-			String sql = "DELETE FROM apprenants WHERE ID_APPRENANT="+ apprenant.getId();
+			String sql = "DELETE FROM apprenant_activite WHERE ID_APPRENANT = "+ apprenant.getId();//Suppression dans la table avec les foreign Key avant.
+			String sql2 = "DELETE FROM apprenants WHERE ID_APPRENANT = "+ apprenant.getId();
 			statement.executeUpdate(sql);
+			statement.executeUpdate(sql2);
 			System.out.println("Suppression de l'apprenant "+ apprenant + " effectuée");
 		}
 		catch(SQLException e){
+			System.out.println(e);
 			System.out.println("Erreur lors de la suppression de l'apprenant !");
 		}
 	}
@@ -51,7 +58,7 @@ public class Requetes {
 	/**
 	 * Méthode pour modifier le nom d'un apprenant.
 	 */
-	public static void modifierApprenant(Apprenant apprenant, String nom) {
+	public static void modifierNomApprenant(Apprenant apprenant, String nom) {
 		try {
 			PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("UPDATE apprenants SET NOM = ?  WHERE ID_APPRENANT = ? ");
 			prepareStatement.setString(1,nom);
@@ -68,16 +75,20 @@ public class Requetes {
 	/**
 	 * Méthode pour ajouter une activité à un apprenant
 	 */
-	public static void ajouterActiviteApprenant(Apprenant apprenant, Activite activite) throws SQLException
-	{
-		int id_apprenant = apprenant.getId();
-		int id_activite = activite.getId();
-		
-		PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenant_activite VALUES( ? , ? )");
-		prepareStatement.setInt(1,id_activite);
-		prepareStatement.setInt(2,id_apprenant);
-		prepareStatement.executeUpdate();
-		
+	public static void ajouterActiviteApprenant(Apprenant apprenant, Activite activite) {
+		try {
+			int id_apprenant = apprenant.getId();
+			int id_activite = activite.getId();
+			
+			PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenant_activite VALUES( ? , ? )");
+			prepareStatement.setInt(1,id_activite);
+			prepareStatement.setInt(2,id_apprenant);
+			prepareStatement.executeUpdate();
+			System.out.println("L'ajout d'activité a réussi !");
+		}
+		catch(SQLException e){
+			System.out.println("L'ajout d'activité a échoué !");
+		}
 	}
 	
 	/**
