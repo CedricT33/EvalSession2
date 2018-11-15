@@ -50,6 +50,7 @@ public class Menu {
 				case "8" : modifierNomApprenant(); break;
 				case "9" : supprimerUnApprenant(); break;
 				case "10" : break;
+				case "11" : easterEgg(); break;
 				default : System.out.println("\nVeuillez taper un chiffre dans la liste svp !");
 			}
 		} while (!saisie.equals("10"));	
@@ -179,7 +180,7 @@ public class Menu {
 	
 	public static void listeActiviteNonPratiques() throws ClassNotFoundException, SQLException {
 		ArrayList<Activite> listActiviteNonPratiques = Requetes.ActivitesNonPratiques();
-		System.out.println("Les activités non pratiqués sont : \n");
+		System.out.println("Les activités non pratiquées sont : \n");
 		for (Activite activite : listActiviteNonPratiques) {
 			System.out.println("-" + activite.getActivite());
 		}
@@ -203,6 +204,14 @@ public class Menu {
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprennantChoisi = Requetes.getApprenantById(choixApprenant);
 		Requetes.supprimerApprenant(apprennantChoisi);
+	}
+	
+	public static void easterEgg() {
+		slowWriting("\n★★\n★★★\n★★\n★\n★\n★\n★\n★\n★\n");
+		slowWriting("★______★\n★_____★★\n★____★★★★\n");
+		slowWriting("★★★★★★★★\n★★★★★★★\n★★★★★★\n★★★★★★\n");
+		slowWriting("★★★★★★★\n★★★★★★★★\n★★★★★★★★★\n★★★★★★★★★\n");
+		slowWriting("★★★★★★★★\n★★★★★★★\n★★★★★\n\n");
 	}
 	
 	  // Method for writing letter by letter slowly.
