@@ -9,7 +9,7 @@ import model.Apprenant;
 
 /**
  * 
- * @author Thomas et Cédric
+ * @author Thomas et CÃ©dric
  * Evaluation Session 2 Simplon.
  *
  */
@@ -17,15 +17,15 @@ public class Application {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		String nom = "Longueville";
+		String nom = "ZÃ©butruc";
 		Apprenant apprenant1 = Requetes.getApprenantByName(nom);
 		ArrayList<Activite> listActivite = Requetes.getActivitesByApprenant(apprenant1);
 		
 		if (listActivite.isEmpty()) {
-			System.out.println(apprenant1.getPrenom() + " n'a pas d'activité enregistrée...");
+			System.out.println(apprenant1.getPrenom() + " n'a pas d'activitÃ© enregistrÃ©e...");
 		}
 		else {
-			System.out.println(apprenant1.getPrenom() + " a comme activité(s) : \n");
+			System.out.println(apprenant1.getPrenom() + " a comme activitÃ©(s) : \n");
 			
 			for (Activite activite : listActivite) {
 				System.out.println(activite.getActivite());	

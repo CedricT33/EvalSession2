@@ -14,7 +14,7 @@ import model.Region;
 public class Requetes {
 	
 	/**
-	 * Méthode pour retourner tous les apprenants dans un tableau
+	 * Méthode pour retourner tous les apprenants rangés par @param dans un tableau
 	 */
 	public static ArrayList<Apprenant> getAllApprenants(String orderBy) throws ClassNotFoundException, SQLException {
 		
@@ -42,6 +42,7 @@ public class Requetes {
 		String requete	= "SELECT * FROM apprenants WHERE NOM = '" + nom + "'";
 		statement = AccesBD.getConnection().createStatement();
 		ResultSet resultat = statement.executeQuery(requete);
+		
 		while(resultat.next())
 		{
 			apprenant = Mapping.mapperApprenant(resultat);
@@ -49,6 +50,9 @@ public class Requetes {
 
 		return apprenant;
 	}
+	
+	// creer getApprenantByActivite(int id_activite)
+	//creer getApprenantById(int id_apprenant)
 	
 	/**
 	 * Méthode pour retourner les activités de l'apprenant
@@ -62,6 +66,7 @@ public class Requetes {
 		String requete	= "SELECT * FROM apprenant_activite WHERE ID_APPRENANT = " + id_apprenant;
 		statement = AccesBD.getConnection().createStatement();
 		ResultSet resultat = statement.executeQuery(requete);
+		
 		while(resultat.next())
 		{
 			Apprenant_activite app_act = Mapping.mapperApprenant_activite(resultat);
@@ -96,6 +101,8 @@ public class Requetes {
 		
 		return activite;
 	}
+	
+	//creer getActiviteByActivite(String activite)
 	
 	/**
 	 * Méthode qui retourne un objet de type Region en fonction de son identifiant
