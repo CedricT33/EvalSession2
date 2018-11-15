@@ -16,7 +16,7 @@ public class AccesBD {
 	private static String utilisateur="root";
 	private static String motDePasse="root";
 	private static String url = "jdbc:mysql://localhost:3306/bd-apprenants";
-	private static String urlSuite = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+	private static String urlSuite = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 	
 	private static Connection connexion = null;
 	

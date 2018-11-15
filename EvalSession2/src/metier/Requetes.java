@@ -1,5 +1,6 @@
 package metier;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,40 @@ import model.Apprenant_activite;
 import model.Region;
 
 public class Requetes {
+	
+	/**
+	 * Méthode ajouter un nouvel apprenant
+	 */
+	public static void ajouterApprenant(Apprenant apprenant) throws SQLException
+	{
+		PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("INSERT INTO apprenants (NOM, PRENOM, BIRTHDATE, EMAIL, PHOTO, ID_REGION) VALUES( ? , ? , ? , ?, ?, ?)");
+		prepareStatement.setString(1,apprenant.getNom());
+		prepareStatement.setString(2,apprenant.getPrenom());
+		prepareStatement.setDate(3,apprenant.getBirthdate());
+		prepareStatement.setString(4,apprenant.getEmail());
+		prepareStatement.setString(5,apprenant.getPhoto());
+		prepareStatement.setInt(6,apprenant.getRegion().getId());
+		prepareStatement.executeUpdate();
+		
+	}
+	
+	/**
+	 * Méthode supprimer un apprenant
+	 */
+	public static void supprimerApprenant(Apprenant apprenant) throws SQLException
+	{
+		Statement statement = null;
+
+		try {
+			statement = AccesBD.getConnection().createStatement();
+			String sql = "DELETE FROM apprenants WHERE ID_APPRENANT="+ apprenant.getId();
+			statement.executeUpdate(sql);
+			System.out.println("Suppression de l'apprenant "+ apprenant + " effectuée");
+		}
+		catch(SQLException e){
+			System.out.println("Erreur lors de la suppression de l'apprenant !");
+		}
+	}
 	
 	/**
 	 * Méthode pour retourner tous les apprenants rangés par @param dans un tableau
@@ -51,7 +86,36 @@ public class Requetes {
 		return apprenant;
 	}
 	
-	// creer getApprenantByActivite(int id_activite)
+	/**
+	 * Méthode pour retourner un apprenant par son nom
+	 */
+	public static ArrayList<Apprenant> getApprenantByActivite(Activite activite) throws ClassNotFoundException, SQLException {
+		
+        int id_activite = activite.getId();
+		
+		Statement statement = null;
+		ArrayList<Apprenant_activite> listApp_act = new ArrayList<>();
+		String requete	= "SELECT * FROM apprenant_activite WHERE ID_ACTIVITE = " + id_activite;
+		statement = AccesBD.getConnection().createStatement();
+		ResultSet resultat = statement.executeQuery(requete);
+		
+		while(resultat.next())
+		{
+			Apprenant_activite app_act = Mapping.mapperApprenant_activite(resultat);
+			listApp_act.add(app_act);
+		}
+		
+		ArrayList<Apprenant> listApprenants = new ArrayList<>();
+		
+		for (Apprenant_activite apprenant_activite : listApp_act) {
+			int id_apprenant = apprenant_activite.getIdApprenant();
+			Apprenant apprenant = getApprenantById(id_apprenant);
+			listApprenants.add(apprenant);
+		}
+		
+		return listApprenants;
+	}
+	
 	//creer getApprenantById(int id_apprenant)
 	
 	/**
@@ -102,7 +166,41 @@ public class Requetes {
 		return activite;
 	}
 	
-	//creer getActiviteByActivite(String activite)
+	/**
+	 * Méthode pour retourner une activité avec l'Id_Activite
+	 */
+	public static Apprenant getApprenantById(int id_apprenant) throws ClassNotFoundException, SQLException {
+		
+		Statement statement = null;
+		Apprenant apprenant = new Apprenant();
+		String requete	= "SELECT * FROM apprenants WHERE ID_Apprenant = " + id_apprenant;
+		statement = AccesBD.getConnection().createStatement();
+		ResultSet resultat = statement.executeQuery(requete);
+		while(resultat.next())
+		{
+			apprenant = Mapping.mapperApprenant(resultat);
+		}
+		
+		return apprenant;
+	}
+
+	/**
+	 * Méthode pour retourner une activité avec l'Id_Activite
+	 */
+	public static Activite getActiviteByActivite(String activiteRecherche) throws ClassNotFoundException, SQLException {
+		
+		Statement statement = null;
+		Activite activite = new Activite();
+		String requete	= "SELECT * FROM activites WHERE ACTIVITE = '" + activiteRecherche + "'";
+		statement = AccesBD.getConnection().createStatement();
+		ResultSet resultat = statement.executeQuery(requete);
+		while(resultat.next())
+		{
+			activite = Mapping.mapperActivite(resultat);
+		}
+		
+		return activite;
+	}
 	
 	/**
 	 * Méthode qui retourne un objet de type Region en fonction de son identifiant
