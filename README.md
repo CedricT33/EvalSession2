@@ -16,7 +16,7 @@ Longueville Thomas & Tressous Cédric
 
 ![ClassDiagram](ClassDiagram.JPG)
 
-<code>
+<pre><code>
   /**
 	 * Méthode pour retourner une liste d'activites non pratiqués par les apprenants.
 	 */
@@ -35,4 +35,4 @@ Longueville Thomas & Tressous Cédric
 		
 		return listActiviteNonPratiques;
 	}
-  </code>
+  </code></pre>
