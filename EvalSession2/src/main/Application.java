@@ -28,9 +28,9 @@ public class Application {
 //			System.out.println(activite.getActivite());
 //		}
 		
-		Region region1 = new Region(3, "Aquitaine");
-		Apprenant toto = new Apprenant(19, "Toto", "Titi", Date.valueOf("2987-12-12"), "toto.titi@free.fr", "titi.jpg", region1);
-		Requetes.modifierApprenant(toto, "Caca");
+//		Region region1 = new Region(3, "Aquitaine");
+//		Apprenant toto = new Apprenant(19, "Toto", "Titi", Date.valueOf("2987-12-12"), "toto.titi@free.fr", "titi.jpg", region1);
+//		Requetes.modifierApprenant(toto, "Caca");
 //		Requetes.ajouterApprenant(toto);
 		
 //		Apprenant toto = Requetes.getApprenantByName("Toto");
