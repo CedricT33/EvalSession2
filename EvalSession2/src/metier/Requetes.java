@@ -49,6 +49,23 @@ public class Requetes {
 	}
 	
 	/**
+	 * Méthode pour modifier le nom d'un apprenant.
+	 */
+	public static void modifierApprenant(Apprenant apprenant, String nom) {
+		try {
+			PreparedStatement prepareStatement = AccesBD.getConnection().prepareStatement("UPDATE apprenants SET NOM = ?  WHERE ID_APPRENANT = ? ");
+			prepareStatement.setString(1,nom);
+			prepareStatement.setInt(2,apprenant.getId());
+			prepareStatement.executeUpdate();
+			System.out.println("Modification effectuee pour l'apprenant : "+ apprenant);
+
+		}
+		catch(SQLException e){
+			System.out.println("Erreur lors de la modification !");
+		}
+	}
+	
+	/**
 	 * Méthode pour ajouter une activité à un apprenant
 	 */
 	public static void ajouterActiviteApprenant(Apprenant apprenant, Activite activite) throws SQLException

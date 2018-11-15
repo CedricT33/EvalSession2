@@ -19,14 +19,18 @@ public class Application {
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		
-		ArrayList<Activite> listActiviteNonPratiques = Requetes.ActivitesNonPratiques();
-		System.out.println("Les activités non pratiqués sont : \n");
-		for (Activite activite : listActiviteNonPratiques) {
-			System.out.println(activite.getActivite());
-		}
 		
-//		Region region1 = new Region(3, "Aquitaine");
-//		Apprenant toto = new Apprenant(19, "Toto", "Titi", Date.valueOf("2987-12-12"), "toto.titi@free.fr", "titi.jpg", region1);
+		
+		
+//		ArrayList<Activite> listActiviteNonPratiques = Requetes.ActivitesNonPratiques();
+//		System.out.println("Les activités non pratiqués sont : \n");
+//		for (Activite activite : listActiviteNonPratiques) {
+//			System.out.println(activite.getActivite());
+//		}
+		
+		Region region1 = new Region(3, "Aquitaine");
+		Apprenant toto = new Apprenant(19, "Toto", "Titi", Date.valueOf("2987-12-12"), "toto.titi@free.fr", "titi.jpg", region1);
+		Requetes.modifierApprenant(toto, "Caca");
 //		Requetes.ajouterApprenant(toto);
 		
 //		Apprenant toto = Requetes.getApprenantByName("Toto");
