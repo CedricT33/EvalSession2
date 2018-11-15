@@ -16,9 +16,8 @@ public class Menu {
 	private static boolean premierTourBoucle = true;
 	
 	public static void afficherMenu() throws ClassNotFoundException, SQLException {
-		slowWriting("------------------------------------\n           EVAL SESSION 2 \n------------------------------------\n\n");
-		
-		
+		slowWriting("-------------------------------------------------------------\n                         EVAL SESSION 2 \n-------------------------------------------------------------\n\n");
+				
 		do {
 			if (!premierTourBoucle) {
 				slowWriting("\n------------------------------------------------------------------------\n");
@@ -51,7 +50,7 @@ public class Menu {
 				case "8" : modifierNomApprenant(); break;
 				case "9" : supprimerUnApprenant(); break;
 				case "10" : break;
-				default : System.out.println("Veuillez taper un chiffre dans la liste svp !");
+				default : System.out.println("\nVeuillez taper un chiffre dans la liste svp !");
 			}
 		} while (!saisie.equals("10"));	
 		
@@ -101,10 +100,10 @@ public class Menu {
 		ArrayList<Activite> listActivite = Requetes.getActivitesByApprenant(apprenant1);
 		
 		if (listActivite.isEmpty()) {
-			System.out.println(apprenant1.getPrenom() + " n'a pas d'activité enregistrée...");
+			System.out.println("\n" + apprenant1.getPrenom() + " n'a pas d'activité enregistrée...");
 		}
 		else {
-			System.out.println(apprenant1.getPrenom() + " a comme activité(s) : \n");
+			System.out.println("\n" + apprenant1.getPrenom() + " a comme activité(s) : \n");
 			
 			for (Activite activite : listActivite) {
 				System.out.println(activite.getActivite());	
@@ -120,14 +119,14 @@ public class Menu {
 		Activite activite1 = Requetes.getActiviteByActivite(activiteRecherche);
 		ArrayList<Apprenant> listApprenant = Requetes.getApprenantByActivite(activite1);
 		if (activite1.getActivite() == null) {
-			System.out.println("Cette activité n'existe pas !");
+			System.out.println("\nCette activité n'existe pas !");
 		}
 		else {
 			if (listApprenant.isEmpty()) {
-				System.out.println("L'activité : \"" + activite1.getActivite() + "\" n'a pas d'apprenant enregistré...");
+				System.out.println("\nL'activité : \"" + activite1.getActivite() + "\" n'a pas d'apprenant enregistré...");
 			}
 			else {
-				System.out.println("L'activité : \"" + activite1.getActivite() + "\" a comme apprenant(s) : \n");
+				System.out.println("\nL'activité : \"" + activite1.getActivite() + "\" a comme apprenant(s) : \n");
 				
 				for (Apprenant apprenant : listApprenant) {
 					System.out.println(apprenant.getPrenom() + " " + apprenant.getNom());	
@@ -167,12 +166,12 @@ public class Menu {
 		System.out.print("\nChoix : ");
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprenantChoisi = Requetes.getApprenantById(choixApprenant);
-		System.out.println("Choisissez une activité parmis : ");
+		System.out.println("\nChoisissez une activité parmi : \n");
 		ArrayList<Activite> listeActivite = Requetes.getAllActivites();
 		for (Activite activite : listeActivite) {
 			System.out.println("Activité n°" + activite.getId() + " " + activite.getActivite());
 		}
-		System.out.print("Choix : ");
+		System.out.print("\nChoix : ");
 		int choixActivite= Integer.parseInt(saisieUtilisateur.nextLine());
 		Activite activiteChoisie = Requetes.getActiviteById(choixActivite);
 		Requetes.ajouterActiviteApprenant(apprenantChoisi, activiteChoisie);
@@ -182,7 +181,7 @@ public class Menu {
 		ArrayList<Activite> listActiviteNonPratiques = Requetes.ActivitesNonPratiques();
 		System.out.println("Les activités non pratiqués sont : \n");
 		for (Activite activite : listActiviteNonPratiques) {
-			System.out.println(activite.getActivite());
+			System.out.println("-" + activite.getActivite());
 		}
 	}
 	
@@ -192,7 +191,7 @@ public class Menu {
 		System.out.print("\nChoix : ");
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprennantChoisi = Requetes.getApprenantById(choixApprenant);
-		System.out.println("Entrez un nouveau nom : ");
+		System.out.print("Entrez un nouveau nom : ");
 		String nouveauNom = saisieUtilisateur.nextLine();
 		Requetes.modifierNomApprenant(apprennantChoisi, nouveauNom);
 	}

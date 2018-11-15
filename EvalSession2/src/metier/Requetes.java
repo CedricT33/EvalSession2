@@ -47,7 +47,7 @@ public class Requetes {
 			String sql2 = "DELETE FROM apprenants WHERE ID_APPRENANT = "+ apprenant.getId();
 			statement.executeUpdate(sql);
 			statement.executeUpdate(sql2);
-			System.out.println("Suppression de l'apprenant "+ apprenant + " effectuée");
+			System.out.println("Suppression de l'apprenant n°"+ apprenant.getId() + " effectuée");
 		}
 		catch(SQLException e){
 			System.out.println(e);
@@ -64,7 +64,7 @@ public class Requetes {
 			prepareStatement.setString(1,nom);
 			prepareStatement.setInt(2,apprenant.getId());
 			prepareStatement.executeUpdate();
-			System.out.println("Modification effectuee pour l'apprenant : "+ apprenant);
+			System.out.println("Modification effectuee pour l'apprenant : "+ apprenant.getPrenom() + " " + apprenant.getNom());
 
 		}
 		catch(SQLException e){
@@ -84,10 +84,10 @@ public class Requetes {
 			prepareStatement.setInt(1,id_activite);
 			prepareStatement.setInt(2,id_apprenant);
 			prepareStatement.executeUpdate();
-			System.out.println("L'ajout d'activité a réussi !");
+			System.out.println("\nL'ajout d'activité a réussi !");
 		}
 		catch(SQLException e){
-			System.out.println("L'ajout d'activité a échoué !");
+			System.out.println("\nL'ajout d'activité a échoué !");
 		}
 	}
 	
