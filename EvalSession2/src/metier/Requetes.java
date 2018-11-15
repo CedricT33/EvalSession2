@@ -27,10 +27,10 @@ public class Requetes {
 			prepareStatement.setString(5,apprenant.getPhoto());
 			prepareStatement.setInt(6,apprenant.getRegion().getId());
 			prepareStatement.executeUpdate();
-			System.out.println("L'apprenant a bien été ajouté !");
+			System.out.println("\nL'apprenant a bien été ajouté !");
 		}
 		catch(SQLException e) {
-			System.out.println("Erreur lors de l'ajout de l'apprenant !");
+			System.out.println("\nErreur lors de l'ajout de l'apprenant !");
 		}
 	}
 	
@@ -47,11 +47,11 @@ public class Requetes {
 			String sql2 = "DELETE FROM apprenants WHERE ID_APPRENANT = "+ apprenant.getId();
 			statement.executeUpdate(sql);
 			statement.executeUpdate(sql2);
-			System.out.println("Suppression de l'apprenant n°"+ apprenant.getId() + " effectuée");
+			System.out.println("\nSuppression de l'apprenant n°"+ apprenant.getId() + " effectuée");
 		}
 		catch(SQLException e){
 			System.out.println(e);
-			System.out.println("Erreur lors de la suppression de l'apprenant !");
+			System.out.println("\nErreur lors de la suppression de l'apprenant !");
 		}
 	}
 	
@@ -64,11 +64,11 @@ public class Requetes {
 			prepareStatement.setString(1,nom);
 			prepareStatement.setInt(2,apprenant.getId());
 			prepareStatement.executeUpdate();
-			System.out.println("Modification effectuee pour l'apprenant : "+ apprenant.getPrenom() + " " + apprenant.getNom());
+			System.out.println("\nModification effectuee pour l'apprenant : "+ apprenant.getPrenom() + " " + apprenant.getNom());
 
 		}
 		catch(SQLException e){
-			System.out.println("Erreur lors de la modification !");
+			System.out.println("\nErreur lors de la modification !");
 		}
 	}
 	

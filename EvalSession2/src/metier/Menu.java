@@ -16,7 +16,7 @@ public class Menu {
 	private static boolean premierTourBoucle = true;
 	
 	public static void afficherMenu() throws ClassNotFoundException, SQLException {
-		slowWriting("-------------------------------------------------------------\n                         EVAL SESSION 2 \n-------------------------------------------------------------\n\n");
+		slowWriting("-------------------------------------------------------------\n                        EVAL SESSION 2 \n-------------------------------------------------------------\n\n");
 				
 		do {
 			if (!premierTourBoucle) {
@@ -153,7 +153,7 @@ public class Menu {
 		case "1" : region = new Region(1, "Ile de France"); break;
 		case "2" : region = new Region(2, "Pays de Loire"); break;
 		case "3" : region = new Region(3, "Aquitaine"); break;
-		default : System.out.println("Mauvais choix de région, l'apprenant aura la région par défaut (Ile de France) !"); break;
+		default : System.out.println("\nMauvais choix de région, l'apprenant aura la région par défaut (Ile de France) !"); break;
 		}
 		
 		Apprenant toto = new Apprenant(99, nom, prenom, Date.valueOf(date), mail, prenom + ".jpg", region);
