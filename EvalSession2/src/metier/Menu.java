@@ -16,7 +16,7 @@ public class Menu {
 	private static boolean premierTourBoucle = true;
 	
 	public static void afficherMenu() throws ClassNotFoundException, SQLException {
-		slowWriting("------------------------------------\n           EVAL SESSION 2 \n------------------------------------\n\n");
+		slowWriting("-------------------------------------\n           EVAL SESSION 2 \n-------------------------------------\n\n");
 		
 		
 		do {
