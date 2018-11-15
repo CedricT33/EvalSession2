@@ -149,7 +149,7 @@ public class Requetes {
 	}
 	
 	/**
-	 * Méthode pour retourner un apprenant par son nom
+	 * Méthode pour retourner une liste d'apprenants par activite.
 	 */
 	public static ArrayList<Apprenant> getApprenantByActivite(Activite activite) throws ClassNotFoundException, SQLException {
 		

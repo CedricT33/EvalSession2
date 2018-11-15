@@ -16,12 +16,12 @@ public class Menu {
 	private static boolean premierTourBoucle = true;
 	
 	public static void afficherMenu() throws ClassNotFoundException, SQLException {
-		System.out.println("----------------\n EVAL SESSION 2 \n----------------\n\n");
+		slowWriting("----------------\n EVAL SESSION 2 \n----------------\n\n");
 		
 		
 		do {
 			if (!premierTourBoucle) {
-				System.out.println("\n------------------------------------------------------------------------\n");
+				slowWriting("\n------------------------------------------------------------------------\n");
 			}
 			System.out.println("Veuillez choisir votre requete :\n");
 			System.out.println("1 - Affichez les noms et prénoms de tous les apprenant(e)s.");
@@ -66,6 +66,22 @@ public class Menu {
 		}
 	}
 	
+	public static void nomAllApprenant() throws ClassNotFoundException, SQLException {
+		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants("ID_APPRENANT");
+		
+		for (Apprenant apprenant : apprenants) {
+			System.out.println(apprenant.getNom());
+		}
+	}
+	
+	public static void AllActivites() throws ClassNotFoundException, SQLException {
+		ArrayList<Activite> activites = Requetes.getAllActivites();
+		
+		for (Activite activite : activites) {
+			System.out.println(activite.getActivite());
+		}
+	}
+	
 	public static void listeApprenantByRegion() throws ClassNotFoundException, SQLException {
 		ArrayList<Apprenant> apprenants = Requetes.getAllApprenants("ID_REGION");
 		
@@ -76,7 +92,9 @@ public class Menu {
 	}
 	
 	public static void rechercheActivitesByApprenant() throws ClassNotFoundException, SQLException {
-		System.out.print("Veuillez entrer un nom d'apprenant : ");
+		System.out.println("Veuillez entrer un nom d'apprenant parmi : \n");
+		nomAllApprenant();
+		System.out.print("\nChoix : ");
 		String nom = saisieUtilisateur.nextLine();
 		
 		Apprenant apprenant1 = Requetes.getApprenantByName(nom);
@@ -95,18 +113,25 @@ public class Menu {
 	}
 	
 	public static void rechercheApprenantsByActivite() throws ClassNotFoundException, SQLException {
-		System.out.print("Veuillez entrer une activité : ");
+		System.out.println("Veuillez entrer le nom d'une activité parmi : \n");
+		AllActivites();
+		System.out.print("\nChoix : ");
 		String activiteRecherche = saisieUtilisateur.nextLine();
 		Activite activite1 = Requetes.getActiviteByActivite(activiteRecherche);
 		ArrayList<Apprenant> listApprenant = Requetes.getApprenantByActivite(activite1);
-		if (listApprenant.isEmpty()) {
-			System.out.println("L'activité : \"" + activite1.getActivite() + "\" n'a pas d'apprenant enregistré...");
+		if (activite1.getActivite() == null) {
+			System.out.println("Cette activité n'existe pas !");
 		}
 		else {
-			System.out.println("L'activité : \"" + activite1.getActivite() + "\" a comme apprenant(s) : \n");
-			
-			for (Apprenant apprenant : listApprenant) {
-				System.out.println(apprenant.getPrenom() + " " + apprenant.getNom());	
+			if (listApprenant.isEmpty()) {
+				System.out.println("L'activité : \"" + activite1.getActivite() + "\" n'a pas d'apprenant enregistré...");
+			}
+			else {
+				System.out.println("L'activité : \"" + activite1.getActivite() + "\" a comme apprenant(s) : \n");
+				
+				for (Apprenant apprenant : listApprenant) {
+					System.out.println(apprenant.getPrenom() + " " + apprenant.getNom());	
+				}
 			}
 		}
 	}
@@ -137,9 +162,9 @@ public class Menu {
 	}
 	
 	public static void affecterActiviteApprenant() throws ClassNotFoundException, SQLException {
-		System.out.println("Choisissez un apprenant parmi : ");
+		System.out.println("Choisissez un apprenant parmi : \n");
 		nomPrenomAllApprenant();
-		System.out.print("Choix : ");
+		System.out.print("\nChoix : ");
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprenantChoisi = Requetes.getApprenantById(choixApprenant);
 		System.out.println("Choisissez une activité parmis : ");
@@ -162,9 +187,9 @@ public class Menu {
 	}
 	
 	public static void modifierNomApprenant() throws ClassNotFoundException, SQLException {
-		System.out.println("Choisissez un apprenant parmi : ");
+		System.out.println("Choisissez un apprenant parmi : \n");
 		nomPrenomAllApprenant();
-		System.out.print("Choix : ");
+		System.out.print("\nChoix : ");
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprennantChoisi = Requetes.getApprenantById(choixApprenant);
 		System.out.println("Entrez un nouveau nom : ");
@@ -173,11 +198,23 @@ public class Menu {
 	}
 	
 	public static void supprimerUnApprenant() throws ClassNotFoundException, SQLException {
-		System.out.println("Choisissez un apprenant à supprimer parmi : ");
+		System.out.println("Choisissez un apprenant à supprimer parmi : \n");
 		nomPrenomAllApprenant();
-		System.out.print("Choix : ");
+		System.out.print("\nChoix : ");
 		int choixApprenant = Integer.parseInt(saisieUtilisateur.nextLine());
 		Apprenant apprennantChoisi = Requetes.getApprenantById(choixApprenant);
 		Requetes.supprimerApprenant(apprennantChoisi);
 	}
+	
+	  // Method for writing letter by letter slowly.
+	  static void slowWriting(String word) {
+	    for (int i = 0; i < word.length(); i++) {
+	      System.out.print(word.charAt(i));
+	      try {
+	        Thread.sleep(20); // 20 milliseconds pause between each letter display.
+	      } catch (InterruptedException ie) {
+	        ie.printStackTrace();
+	      }
+	    }
+	  }
 }
