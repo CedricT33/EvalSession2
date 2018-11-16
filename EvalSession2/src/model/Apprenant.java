@@ -89,7 +89,13 @@ public class Apprenant {
 	}
 
 	public String afficherNomPrenom() {
-		return "Apprenant "+ id + ",\t\tnom=" + nom + ",\t\tprenom=" + prenom;
+		if (nom.length() > 10) {
+			return "Apprenant "+ id + ",\t\tnom=" + nom + ",\tprenom=" + prenom;
+		}
+		else {
+			return "Apprenant "+ id + ",\t\tnom=" + nom + ",\t\tprenom=" + prenom;
+		}
+		
 	}
 	
 	public String afficherNomPrenomRegion() {

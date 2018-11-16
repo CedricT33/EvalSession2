@@ -37,8 +37,7 @@ public class Requetes {
 	/**
 	 * Méthode supprimer un apprenant
 	 */
-	public static void supprimerApprenant(Apprenant apprenant) throws SQLException
-	{
+	public static void supprimerApprenant(Apprenant apprenant) {
 		Statement statement = null;
 
 		try {
@@ -47,7 +46,13 @@ public class Requetes {
 			String sql2 = "DELETE FROM apprenants WHERE ID_APPRENANT = "+ apprenant.getId();
 			statement.executeUpdate(sql);
 			statement.executeUpdate(sql2);
-			System.out.println("\nSuppression de l'apprenant n°"+ apprenant.getId() + " effectuée");
+			if (apprenant.getId() != 0) {
+				System.out.println("\nSuppression de l'apprenant n°"+ apprenant.getId() + " effectuée");
+			}
+			else {
+				System.out.println("\nCet apprenant n'existe pas...");
+			}
+			
 		}
 		catch(SQLException e){
 			System.out.println(e);
