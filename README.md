@@ -18,7 +18,7 @@ Longueville Thomas & Tressous Cédric
 
 # Exemple de code
 
-'''
+<pre><code>
          /**
 	 * Méthode pour retourner une liste d'activites non pratiqués par les apprenants.
 	 */
@@ -37,4 +37,4 @@ Longueville Thomas & Tressous Cédric
 		
 		return listActiviteNonPratiques;
 	}
-'''
+</code></pre>
