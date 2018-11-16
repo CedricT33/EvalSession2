@@ -18,8 +18,8 @@ Longueville Thomas & Tressous Cédric
 
 # Exemple de code
 
-<pre class = "brush:java ;"><code>
-  /**
+'''
+         /**
 	 * Méthode pour retourner une liste d'activites non pratiqués par les apprenants.
 	 */
 	public static ArrayList<Activite> ActivitesNonPratiques() throws SQLException, ClassNotFoundException {
@@ -37,4 +37,4 @@ Longueville Thomas & Tressous Cédric
 		
 		return listActiviteNonPratiques;
 	}
-  </code></pre>
+'''
