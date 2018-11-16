@@ -18,7 +18,7 @@ Longueville Thomas & Tressous Cédric
 
 # Exemple de code
 
-<pre><code>
+<pre class = "brush:java ;"><code>
   /**
 	 * Méthode pour retourner une liste d'activites non pratiqués par les apprenants.
 	 */
